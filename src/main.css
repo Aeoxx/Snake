@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: rgb(24, 10, 105);
+  background: linear-gradient(
+    90deg,
+    rgba(24, 10, 105, 1) 19%,
+    rgba(72, 33, 106, 1) 59%,
+    rgba(128, 23, 157, 1) 85%,
+    rgba(40, 8, 52, 0.9108018207282913) 100%
+  );
+}
+
+.game {
+  display: grid;
+  grid-template-columns: 70vmin auto;
+  grid-template-rows: 70vmin auto;
+  height: 100vh;
+}
+
+.block {
+  background-color: rgba(4, 18, 53, 0.7);
+  border-radius: 1rem;
+  margin: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.245);
+}
