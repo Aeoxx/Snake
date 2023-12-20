@@ -20,12 +20,35 @@ const render = () => {
     ">
       <div class="in-snake"></div>
     </div>
-  `
+  `;
+
+  snake.body.forEach((b, i) => {
+    if (i === 0) return
+    gameFieldNode.innerHTML += `
+    <div 
+      class="snake" 
+      style="
+        left: ${(b.x - 1) * 9.45}%; 
+        top: ${(b.y - 1) * 9.45}%;
+    ">
+      <div class="in-snake"></div>
+    </div>
+  `;
+  })
+
 }
 
 render()
 
 const moveSnake = (action) => {
+
+  //move snakeTale
+  for (let i = snake.body.length - 1; i > 0; i--) {
+    // console.log(snake.body[i], i);
+    snake.body[i].x = snake.body[i - 1].x
+    snake.body[i].y = snake.body[i - 1].y
+  }
+  //move snakeHead
   switch (action) {
     case 'ArrowUp':
       snake.body[0].y--;
@@ -44,9 +67,7 @@ const moveSnake = (action) => {
       if (snake.body[0].x < 1) snake.body[0].x = 10;
       break;
   }
-
   render()
-
 }
 
 window.addEventListener('keydown', (e) => {
