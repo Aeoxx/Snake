@@ -2,7 +2,9 @@ const gameFieldNode = document.querySelector('.block.main')
 
 const snake = {
   body: [
-    { x: 10, y: 1 },
+    { x: 6, y: 1 },
+    { x: 5, y: 1 },
+    { x: 4, y: 1 },
     { x: 3, y: 1 },
     { x: 2, y: 1 },
     { x: 1, y: 1 },
@@ -35,19 +37,23 @@ const render = () => {
     </div>
   `;
   })
-
 }
 
 render()
 
 const moveSnake = (action) => {
-
+  const prevNeckCoordinates = { ...snake.body[1] }
   //move snakeTale
   for (let i = snake.body.length - 1; i > 0; i--) {
     // console.log(snake.body[i], i);
     snake.body[i].x = snake.body[i - 1].x
     snake.body[i].y = snake.body[i - 1].y
   }
+
+
+  const prevHeadCoordinates = snake.body[0]
+
+
   //move snakeHead
   switch (action) {
     case 'ArrowUp':
@@ -67,7 +73,22 @@ const moveSnake = (action) => {
       if (snake.body[0].x < 1) snake.body[0].x = 10;
       break;
   }
+
+  console.log(snake.body[0], prevNeckCoordinates);
+
+  if (snake.body[0].y === prevNeckCoordinates.y && snake.body[0].x === prevNeckCoordinates.x) {
+    snake.body[0] = prevHeadCoordinates
+
+  }
+  console.log('after reset', snake.body[0], prevNeckCoordinates);
+
   render()
+
+  snake.body.forEach((b, i) => {
+    if (snake.body[0].x === b.x && snake.body[0].y === b.y && i !== 0) {
+      colision()
+    }
+  })
 }
 
 window.addEventListener('keydown', (e) => {
@@ -75,3 +96,6 @@ window.addEventListener('keydown', (e) => {
   console.log(e.code);
 })
 
+const colision = () => {
+  alert('')
+}
