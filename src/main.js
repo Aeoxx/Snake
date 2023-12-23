@@ -14,6 +14,8 @@ const snake = {
   vector: 'ArrowRight',
 }
 
+const food = []
+
 const render = () => {
   gameFieldNode.innerHTML = '';
   gameFieldNode.innerHTML += `
@@ -41,6 +43,20 @@ const render = () => {
   `;
   })
 
+  food.forEach((f, i) => {
+
+    gameFieldNode.innerHTML += `
+      <div 
+        class="food" 
+        style="
+          left: ${(f.x - 1) * 9.45}%; 
+          top: ${(f.y - 1) * 9.45}%;
+      ">
+        <div class="in-food"></div>
+      </div>
+    `;
+  })
+
   const snakeItems = document.querySelectorAll('.snake')
   snakeItems.forEach(async (b, i) => {
     // await pause(500)
@@ -53,6 +69,7 @@ const render = () => {
     }
   })
 }
+
 
 render()
 
@@ -122,12 +139,15 @@ const colision = () => {
   location.reload()
 }
 
-const random = () => Math.random()
+const random = (from, to) => from + Math.round(Math.random() * to - from)
 
 const generateFood = () => {
-  const x = random()
-  const y = random()
+  const x = random(1, 10)
+  const y = random(1, 10)
   console.log(x, y);
+
+  food.push({ type: 'apple', x, y })
+  console.log(food);
 }
 
 setInterval(generateFood, 1000)
