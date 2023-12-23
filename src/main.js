@@ -8,7 +8,8 @@ const snake = {
     { x: 3, y: 1 },
     { x: 2, y: 1 },
     { x: 1, y: 1 },
-  ]
+  ],
+  vector: 'ArrowRight',
 }
 
 const render = () => {
@@ -42,6 +43,13 @@ const render = () => {
 render()
 
 const moveSnake = (action) => {
+  // stop antivector
+  if (snake.vector === 'ArrowRight' && action === 'ArrowLeft') return
+  if (snake.vector === 'ArrowLeft' && action === 'ArrowRight') return
+  if (snake.vector === 'ArrowUp' && action === 'ArrowDown') return
+  if (snake.vector === 'ArrowDown' && action === 'ArrowUp') return
+  snake.vector = action
+
   const prevNeckCoordinates = { ...snake.body[1] }
   //move snakeTale
   for (let i = snake.body.length - 1; i > 0; i--) {
@@ -50,9 +58,7 @@ const moveSnake = (action) => {
     snake.body[i].y = snake.body[i - 1].y
   }
 
-
   const prevHeadCoordinates = snake.body[0]
-
 
   //move snakeHead
   switch (action) {
