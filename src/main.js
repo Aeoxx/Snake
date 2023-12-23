@@ -1,5 +1,7 @@
 const gameFieldNode = document.querySelector('.block.main')
 
+const pause = (time) => new Promise((resolve) => setTimeout(() => resolve(), time))
+
 const snake = {
   body: [
     { x: 6, y: 1 },
@@ -37,6 +39,18 @@ const render = () => {
       <div class="in-snake"></div>
     </div>
   `;
+  })
+
+  const snakeItems = document.querySelectorAll('.snake')
+  snakeItems.forEach(async (b, i) => {
+    // await pause(500)
+    console.log('async', !!(i % 2));
+    if (!!(i % 2)) {
+      b.style.animation = '2s snake infinite'
+    }
+    else {
+      b.style.animation = '2s snake2 infinite'
+    }
   })
 }
 
