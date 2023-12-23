@@ -42,7 +42,7 @@ const render = () => {
 
 render()
 
-const moveSnake = (action) => {
+const moveSnake = (action = snake.vector) => {
   // stop antivector
   if (snake.vector === 'ArrowRight' && action === 'ArrowLeft') return
   if (snake.vector === 'ArrowLeft' && action === 'ArrowRight') return
@@ -96,12 +96,14 @@ const moveSnake = (action) => {
     }
   })
 }
+setInterval(moveSnake, 500)
 
 window.addEventListener('keydown', (e) => {
-  moveSnake(e.code)
+  // moveSnake(e.code)
+  snake.vector = e.code
   console.log(e.code);
 })
 
 const colision = () => {
-  alert('')
+  location.reload()
 }
