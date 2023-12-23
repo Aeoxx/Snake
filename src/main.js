@@ -126,7 +126,10 @@ const moveSnake = (action = snake.vector) => {
       colision()
     }
   })
+
+  checkFoodIntake()
 }
+
 setInterval(moveSnake, 500)
 
 window.addEventListener('keydown', (e) => {
@@ -151,3 +154,7 @@ const generateFood = () => {
 }
 
 setInterval(generateFood, 1000)
+
+const checkFoodIntake = () => {
+
+}
