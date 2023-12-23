@@ -44,7 +44,7 @@ const render = () => {
   const snakeItems = document.querySelectorAll('.snake')
   snakeItems.forEach(async (b, i) => {
     // await pause(500)
-    console.log('async', !!(i % 2));
+    // console.log('async', !!(i % 2));
     if (!!(i % 2)) {
       b.style.animation = '2s snake infinite'
     }
@@ -94,13 +94,13 @@ const moveSnake = (action = snake.vector) => {
       break;
   }
 
-  console.log(snake.body[0], prevNeckCoordinates);
+  // console.log(snake.body[0], prevNeckCoordinates);
 
   if (snake.body[0].y === prevNeckCoordinates.y && snake.body[0].x === prevNeckCoordinates.x) {
     snake.body[0] = prevHeadCoordinates
 
   }
-  console.log('after reset', snake.body[0], prevNeckCoordinates);
+  // console.log('after reset', snake.body[0], prevNeckCoordinates);
 
   render()
 
@@ -115,9 +115,19 @@ setInterval(moveSnake, 500)
 window.addEventListener('keydown', (e) => {
   // moveSnake(e.code)
   snake.vector = e.code
-  console.log(e.code);
+  // console.log(e.code);
 })
 
 const colision = () => {
   location.reload()
 }
+
+const random = () => Math.random()
+
+const generateFood = () => {
+  const x = random()
+  const y = random()
+  console.log(x, y);
+}
+
+setInterval(generateFood, 1000)
