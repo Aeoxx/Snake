@@ -52,7 +52,6 @@ body {
   height: 100%;
 }
 
-
 .head .in-snake {
   background-color: rgb(255, 115, 0);
 }
@@ -96,3 +95,18 @@ body {
   border-radius: 3rem;
   height: 100%;
 }
+
+.coin-panel {
+  width: 50%;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: goldenrod;
+  font-size: 4rem;
+}
+
+.coin-img {
+  width: 5rem;
+}
+

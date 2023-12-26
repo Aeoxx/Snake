@@ -1,4 +1,5 @@
 const gameFieldNode = document.querySelector('.block.main')
+const coins = document.querySelector('.coins')
 
 const snake = {
   body: [
@@ -21,6 +22,7 @@ const game = {
 //
 //! render
 //
+
 const render = () => {
   gameFieldNode.innerHTML = '';
   gameFieldNode.innerHTML += `
@@ -73,6 +75,8 @@ const render = () => {
       b.style.animation = '2s snake2 infinite'
     }
   })
+
+  coins.innerHTML = game.coins
 }
 
 //
