@@ -1,7 +1,5 @@
 const gameFieldNode = document.querySelector('.block.main')
 
-const pause = (time) => new Promise((resolve) => setTimeout(() => resolve(), time))
-
 const snake = {
   body: [
     { x: 6, y: 1 },
@@ -16,6 +14,9 @@ const snake = {
 
 const food = []
 
+//
+//! render
+//
 const render = () => {
   gameFieldNode.innerHTML = '';
   gameFieldNode.innerHTML += `
@@ -70,9 +71,9 @@ const render = () => {
   })
 }
 
-
-render()
-
+//
+//! move snake
+//
 const moveSnake = (action = snake.vector) => {
   // stop antivector
   if (snake.vector === 'ArrowRight' && action === 'ArrowLeft') return
@@ -130,20 +131,16 @@ const moveSnake = (action = snake.vector) => {
   checkFoodIntake()
 }
 
-setInterval(moveSnake, 500)
-
-window.addEventListener('keydown', (e) => {
-  // moveSnake(e.code)
-  snake.vector = e.code
-  // console.log(e.code);
-})
-
+//
+//! colision
+//
 const colision = () => {
   location.reload()
 }
 
-const random = (from, to) => from + Math.round(Math.random() * to - from)
-
+//
+//! generate food
+//
 const generateFood = () => {
   const x = random(1, 10)
   const y = random(1, 10)
@@ -153,8 +150,16 @@ const generateFood = () => {
   console.log(food);
 }
 
-setInterval(generateFood, 1000)
 
 const checkFoodIntake = () => {
 
+
 }
+
+render()
+setInterval(generateFood, 1000)
+setInterval(moveSnake, 500)
+
+window.addEventListener('keydown', (e) => {
+  snake.vector = e.code
+})
