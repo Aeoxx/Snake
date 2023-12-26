@@ -14,6 +14,10 @@ const snake = {
 
 const food = []
 
+const game = {
+  coins: 0,
+}
+
 //
 //! render
 //
@@ -152,7 +156,13 @@ const generateFood = () => {
 
 
 const checkFoodIntake = () => {
-
+  food.forEach((f, i) => {
+    if (snake.body[0].x === f.x && snake.body[0].y === f.y) {
+      food.splice(i, 1)
+      game.coins += 10
+      log("coins : " + game.coins);
+    }
+  })
 
 }
 
